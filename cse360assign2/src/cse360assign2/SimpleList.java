@@ -1,12 +1,14 @@
 // Thomas Murphy
 // class ID: 249
-// Assignment 1
+// Assignment 2
 // Class to create and modify an array of integers it is designed to 
 // count the number of elements, add elements to array, remove 
 // elements from array, search for elements in the array, 
 // and entering elements to a string
 
-package cse360assign2;
+//github Link: https://github.com/TMurphy1372/cse360assign2
+
+package assign1;
 
 public class SimpleList {
 
@@ -41,7 +43,7 @@ public class SimpleList {
 		else 
 		{
 			
-			int[] temp = new int[10];
+			int[] temp = new int[((int) (count * 2))];
 			
 			//filling temporary array
 			
@@ -51,12 +53,13 @@ public class SimpleList {
 			}
 			
 			
-			list[0] = InputInteger;
 			
-			//if count is less than 10 fills array with all elements in temporary array
 			
-			if(count < 10) 
+			//if count is less than max amount in array fills array with all elements in temporary array
+			
+			if(count < list.length) 
 			{
+				list[0] = InputInteger;
 				for(int index = 0; index < count; index++) 
 				{
 					list[index + 1] = temp[index];
@@ -69,10 +72,15 @@ public class SimpleList {
 			
 			else 
 			{
-				for(int index = 0; index < count - 1; index++) 
+				list = new int[((int) (count * 1.5))];
+				list[0] = InputInteger;
+				for(int index = 0; index < count; index++) 
 				{
+					
 					list[index + 1] = temp[index];
 				}
+				
+				count++;
 			}
 		}
 	}
@@ -97,6 +105,26 @@ public class SimpleList {
 			}
 						
 			count--;
+			
+			if(list.length > count * 1.25) 
+			{
+				int[] temp = new int[((int) (count * 2))];
+				
+				//filling temporary array
+				
+				for(int index = 0; index <= count; index++) 
+				{
+					temp[index] = list[index];
+				}
+				
+				list = new int[count];
+				
+				for(int index = 0; index < count; index++) 
+				{
+					
+					list[index] = temp[index];
+				}
+			}
 		}
 	}
 	
@@ -151,5 +179,78 @@ public class SimpleList {
 		return foundIndex;
 	}
 	
+	//Adds element to the end of the array 
+	public void append(int InputInteger) 
+	{
+		if(count < 1) 
+		{
+			list[0] = InputInteger;
+			
+			count++;
+		}
+		
+		else if (count < list.length - 1) 
+		{
+			list[count] = InputInteger;
+			
+			count++;
+		}
+		else 
+		{
+			int[] temp = new int[((int) (count * 2))];
+			
+			//filling temporary array
+			
+			for(int index = 0; index < count; index++) 
+			{
+				temp[index] = list[index];
+			}
+			
+			list = new int[((int) (count * 1.5))];
+			
+			for(int index = 0; index < count; index++) 
+			{
+				list[index] = temp[index];
+			}
+			
+			list[count] = InputInteger;
+			
+			count++;
+		}
+		
+	}
+
 	
+	//returns the first element in the list 
+	public int first() 
+	{
+		int firstElement = -1;
+		
+		if(count > 0) 
+		{
+			firstElement = list[0];
+		}
+		
+		return firstElement;
+	}
+	
+	//returns the last element in the list
+	public int last() 
+	{
+		int lastElement = -1;
+		
+		if(count > 0) 
+		{
+			lastElement = list[count - 1];
+		}
+		
+		return lastElement;
+		
+	}
+	
+	//returns all the possible locations in the array 
+	public int size() 
+	{
+		return list.length;
+	}
 }

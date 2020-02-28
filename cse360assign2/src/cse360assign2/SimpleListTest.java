@@ -1,4 +1,4 @@
-package cse360assign2;
+package assign1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,7 +52,7 @@ class SimpleListTest {
 		
 		//filling list
 		list.add(12);
-		list.add(11);
+		list.add(11); 
 		list.add(10);
 		list.add(9);
 		list.add(8);	
@@ -64,7 +64,7 @@ class SimpleListTest {
 		list.add(2);
 		list.add(1);
 		
-		assertNotEquals("1 2 3 4 5 6 7 8 9 10 11 12", list.toString());
+		assertEquals("1 2 3 4 5 6 7 8 9 10 11 12", list.toString());
 		
 	}
 
@@ -76,6 +76,7 @@ class SimpleListTest {
 		SimpleList list = new SimpleList();
 		
 		//filling list
+		list.add(11);
 		list.add(10);
 		list.add(9);
 		list.add(8);
@@ -88,12 +89,13 @@ class SimpleListTest {
 		list.add(1);
 		
 		list.remove(5);
+		assertEquals("1 2 3 4 6 7 8 9 10 11", list.toString());
 		
 		list.remove(10);
 		
 		list.remove(1);
 		
-		assertEquals("2 3 4 6 7 8 9", list.toString());
+		assertEquals("2 3 4 6 7 8 9 11", list.toString());
 	}
 	
 	@Test
@@ -146,7 +148,7 @@ class SimpleListTest {
 		list.add(2);
 		list.add(1);
 		
-		assertEquals(10, list.count());
+		assertEquals(11, list.count());
 		
 	}
 
@@ -258,4 +260,91 @@ class SimpleListTest {
 		assertNotEquals(8, list.search(11));
 	}
 
+	@Test
+	//testing that the search returns fails when element does not exist
+	void testAppend() 
+	{
+		SimpleList list = new SimpleList();
+		
+		list.append(1);
+		list.append(2);
+		list.append(3);
+		list.append(4);
+		list.append(5);
+		list.append(6);
+		list.append(7);
+		list.append(8);
+		list.append(9);
+		list.append(10);
+		list.append(11);
+		list.append(12);
+		
+		assertEquals("1 2 3 4 5 6 7 8 9 10 11 12", list.toString());
+	}
+	
+	@Test
+	//testing that the search returns fails when element does not exist
+	void testFirst() 
+	{
+		SimpleList list = new SimpleList();
+		
+		list.append(1);
+		list.append(2);
+		list.append(3);
+		list.append(4);
+		list.append(5);
+		list.append(6);
+		list.append(7);
+		list.append(8);
+		list.append(9);
+		list.append(10);
+		list.append(11);
+		list.append(12);
+		
+		assertEquals(1, list.first());
+	}
+	
+	@Test
+	//testing that the search returns fails when element does not exist
+	void testLast() 
+	{
+		SimpleList list = new SimpleList();
+		
+		list.append(1);
+		list.append(2);
+		list.append(3);
+		list.append(4);
+		list.append(5);
+		list.append(6);
+		list.append(7);
+		list.append(8);
+		list.append(9);
+		list.append(10);
+		list.append(11);
+		list.append(12);
+		
+		assertEquals(12, list.last());
+	}
+	
+	@Test
+	//testing that the search returns fails when element does not exist
+	void testSize() 
+	{
+		SimpleList list = new SimpleList();
+		
+		list.append(1);
+		list.append(2);
+		list.append(3);
+		list.append(4);
+		list.append(5);
+		list.append(6);
+		list.append(7);
+		list.append(8);
+		list.append(9);
+		list.append(10);
+		list.append(11);
+		list.append(12);
+		
+		assertEquals(13, list.size());
+	}
 }
